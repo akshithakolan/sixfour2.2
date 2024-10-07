@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS Department Information</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f0f0; /* Light gray background */
+            font-family: 'Arial', sans-serif;
+        }
+
+        h1 {
+            color: #006633; /* GMU Green */
+            font-weight: bold;
+        }
+
+        .header-box {
+            border: 5px solid #006633; /* GMU Green border */
+            padding: 20px;
+            margin-bottom: 30px;
+            background-color: #fff;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        p {
+            font-size: 1.2rem;
+        }
+
+        a {
+            color: #FFCC33; /* GMU Yellow */
+            font-weight: bold;
+        }
+
+        .link-box {
+            background-color: #006633;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+            color: #fff;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .link-box:hover {
+            transform: scale(1.05);
+        }
+
+        .link-box a {
+            color: #FFCC33;
+            text-decoration: none;
+            font-size: 1.5rem;
+        }
+
+        .custom-style {
+            background-color: #FFCC33;
+            color: #006633;
+            padding: 10px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .home-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-bottom: 20px;
+            background-color: #FFCC33;
+            color: #006633;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Heading Section -->
+        <div class="header-box text-center">
+            <h1>Computer Science Department</h1>
+            <a href="index.html" class="home-btn btn">Home</a>
+        </div>
+
+        <!-- Information Section -->
+        <p>
+            Welcome to the Computer Science Department at George Mason University! Our department offers a wide
+            range of undergraduate and graduate programs designed to prepare students for careers in the rapidly
+            changing world of technology. Whether you're interested in software development, cybersecurity,
+            artificial intelligence, or data science, we have the right program for you.
+        </p>
+
+        <section>
+            <h2>MS Degree Programs</h2>
+            <ul class="list-group">
+                <li class="list-group-item">Master of Science in Computer Science</li>
+                <li class="list-group-item">Master of Science in Software Engineering</li>
+                <li class="list-group-item">Master of Science in Information Systems</li>
+                <li class="list-group-item">Master of Science in Data Analytics Engineering</li>
+            </ul>
+        </section>
+    
+        <section>
+            <h2>Required Courses for MS Programs</h2>
+    
+            <h3>Master of Science in Computer Science</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Course Number</th>
+                        <th>Course Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>CS 550</td>
+                        <td>Database Systems</td>
+                    </tr>
+                    <tr>
+                        <td>CS 571</td>
+                        <td>Operating Systems</td>
+                    </tr>
+                    <tr>
+                        <td>CS 583</td>
+                        <td>Analysis of Algorithms</td>
+                    </tr>
+                </tbody>
+            </table>
+    
+            <h3>Master of Science in Software Engineering</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Course Number</th>
+                        <th>Course Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>SWE 619</td>
+                        <td>Software Construction</td>
+                    </tr>
+                    <tr>
+                        <td>SWE 621</td>
+                        <td>Software Design</td>
+                    </tr>
+                    <tr>
+                        <td>SWE 637</td>
+                        <td>Software Testing</td>
+                    </tr>
+                </tbody>
+            </table>
+    
+            <h3>Master of Science in Data Analytics Engineering</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Course Number</th>
+                        <th>Course Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>DAEN 500</td>
+                        <td>Introduction to Data Analytics</td>
+                    </tr>
+                    <tr>
+                        <td>DAEN 501</td>
+                        <td>Data Mining</td>
+                    </tr>
+                    <tr>
+                        <td>DAEN 502</td>
+                        <td>Machine Learning for Data Analytics</td>
+                    </tr>
+                </tbody>
+            </table>
+    
+        </section>
+
+        <!-- Link to Survey Page -->
+        <div class="link-box">
+            <a href="csdeptsurvey.html">Take the CS Department Survey</a>
+        </div>
+
+        <!-- Footer or Additional Information -->
+        <p class="mt-5 custom-style">
+            "Join us in shaping the future of technology. Your feedback matters!"
+        </p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>
