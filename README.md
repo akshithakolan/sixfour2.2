@@ -1,4 +1,3 @@
-# Assignment 1 : Student e-portfolio using AWS S3 and EC2
 
 Part 1: Static Website Hosting on Amazon S3
 
