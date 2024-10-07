@@ -229,6 +229,24 @@
                 <input type="text" id="raffle" name="raffle" class="form-control" required pattern="(\d{1,3},?){10,}">
             </div>
 
+            <!-- Data Field -->
+            <div class="form-group">
+                <label for="data">Data (Enter 10 comma separated numbers between 1 and 100)</label>
+                <input type="text" id="data" name="data" class="form-control" required onblur="computeAverageAndMaximum()">
+                <small id="dataError" class="form-text text-danger"></small>
+            </div>
+
+            <!-- Average and Maximum Output Fields -->
+            <div class="form-group">
+                <label for="average">Average</label>
+                <input type="text" id="average" name="average" class="form-control" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="maximum">Maximum</label>
+                <input type="text" id="maximum" name="maximum" class="form-control" readonly>
+            </div>
+
             <!-- Additional Comments -->
             <div class="form-group">
                 <label for="comments">Additional Comments</label>
@@ -292,6 +310,29 @@
             }
 
             document.getElementById("greeting").innerHTML = `${greeting} ${name}, welcome to SWE642 Survey`;
+        }
+
+        function computeAverageAndMaximum() {
+            const dataField = document.getElementById("data");
+            const dataError = document.getElementById("dataError");
+            const averageField = document.getElementById("average");
+            const maximumField = document.getElementById("maximum");
+
+            const data = dataField.value.split(',').map(Number);
+            if (data.length !== 10 || data.some(num => isNaN(num) || num < 1 || num > 100)) {
+                dataError.textContent = "Please enter exactly 10 comma separated numbers between 1 and 100.";
+                averageField.value = "";
+                maximumField.value = "";
+                return;
+            }
+
+            dataError.textContent = "";
+            const sum = data.reduce((acc, num) => acc + num, 0);
+            const average = sum / data.length;
+            const maximum = Math.max(...data);
+
+            averageField.value = average.toFixed(2);
+            maximumField.value = maximum;
         }
 
         checkCookie();
