@@ -347,45 +347,109 @@
             const radioButtons = form.querySelectorAll('input[name="interestSource"]:checked');
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+            let errorMessage = "";
+            let hasError = false;
+
             // Validate Name fields
-            if (!/^[A-Za-z]+$/.test(firstName) || !/^[A-Za-z]+$/.test(lastName)) {
-                alert('Name fields should contain only alphabets.');
-                event.preventDefault();
-                return;
+            if (!/^[A-Za-z]+$/.test(firstName)) {
+                errorMessage += "First Name should contain only alphabets.\n";
+                form.firstName.value = "";
+                hasError = true;
+            }
+            if (!/^[A-Za-z]+$/.test(lastName)) {
+                errorMessage += "Last Name should contain only alphabets.\n";
+                form.lastName.value = "";
+                hasError = true;
             }
 
             // Validate Address fields
-            if (!/^[A-Za-z0-9\s,.'-]{3,}$/.test(streetAddress) || !/^[A-Za-z\s,.'-]{2,}$/.test(city) || !/^[A-Za-z\s,.'-]{2,}$/.test(state)) {
-                alert('Address fields should contain appropriate characters.');
-                event.preventDefault();
-                return;
+            if (!/^[A-Za-z0-9\s,.'-]{3,}$/.test(streetAddress)) {
+                errorMessage += "Street Address should contain appropriate characters.\n";
+                form.streetAddress.value = "";
+                hasError = true;
+            }
+            if (!/^[A-Za-z\s,.'-]{2,}$/.test(city)) {
+                errorMessage += "City should contain appropriate characters.\n";
+                form.city.value = "";
+                hasError = true;
+            }
+            if (!/^[A-Za-z\s,.'-]{2,}$/.test(state)) {
+                errorMessage += "State should contain appropriate characters.\n";
+                form.state.value = "";
+                hasError = true;
             }
 
             // Validate Email
             if (!emailPattern.test(email)) {
-                alert('Please enter a valid email address.');
-                event.preventDefault();
-                return;
+                errorMessage += "Please enter a valid email address.\n";
+                form.email.value = "";
+                hasError = true;
             }
 
             // Validate Checkboxes
             if (checkboxes.length < 2) {
-                alert('Please select at least two options for "What did you like most about the campus?".');
-                event.preventDefault();
-                return;
+                errorMessage += 'Please select at least two options for "What did you like most about the campus?".\n';
+                hasError = true;
             }
 
             // Validate Radio Buttons
             if (radioButtons.length === 0) {
-                alert('Please select an option for "How did you become interested in the university?".');
+                errorMessage += 'Please select an option for "How did you become interested in the university?".\n';
+                hasError = true;
+            }
+
+            if (hasError) {
+                alert(errorMessage);
                 event.preventDefault();
-                return;
             }
         }
 
         document.getElementById('surveyForm').addEventListener('submit', validateForm);
         checkCookie();
+
+        document.getElementById('zip').addEventListener('blur', function() {
+            const zip = this.value;
+            if (zip) {
+                fetch('zipcodes.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        const zipcodeData = data.find(item => item.zip === zip);
+                        if (zipcodeData) {
+                            document.getElementById('city').value = zipcodeData.city;
+                            document.getElementById('state').value = zipcodeData.state;
+                            document.getElementById('zip').setCustomValidity('');
+                        } else {
+                            document.getElementById('city').value = '';
+                            document.getElementById('state').value = '';
+                            document.getElementById('zip').setCustomValidity('Invalid zip code');
+                        }
+                    })
+                    .catch(error => console.error('Error fetching the zip codes:', error));
+            }
+        });
     </script>
 </body>
 
 </html>
+<script>
+    document.getElementById('zip').addEventListener('blur', function() {
+        const zip = this.value;
+        if (zip) {
+            fetch('zipcodes.json')
+                .then(response => response.json())
+                .then(data => {
+                    const zipcodeData = data.find(item => item.zip === zip);
+                    if (zipcodeData) {
+                        document.getElementById('city').value = zipcodeData.city;
+                        document.getElementById('state').value = zipcodeData.state;
+                        document.getElementById('zip').setCustomValidity('');
+                    } else {
+                        document.getElementById('city').value = '';
+                        document.getElementById('state').value = '';
+                        document.getElementById('zip').setCustomValidity('Invalid zip code');
+                    }
+                })
+                .catch(error => console.error('Error fetching the zip codes:', error));
+        }
+    });
+</script>
