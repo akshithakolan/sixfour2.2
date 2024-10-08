@@ -126,6 +126,11 @@
                 <label for="streetAddress">Street Address</label>
                 <input type="text" id="streetAddress" name="streetAddress" class="form-control" required>
             </div>
+            <!-- Zip Code -->
+            <div class="form-group">
+                <label for="zip">Zip Code</label>
+                <input type="text" id="zip" name="zip" class="form-control" required>
+            </div>
 
             <!-- City -->
             <div class="form-group">
@@ -139,11 +144,7 @@
                 <input type="text" id="state" name="state" class="form-control" required>
             </div>
 
-            <!-- Zip Code -->
-            <div class="form-group">
-                <label for="zip">Zip Code</label>
-                <input type="text" id="zip" name="zip" class="form-control" required>
-            </div>
+            
 
             <!-- Telephone Number -->
             <div class="form-group">
@@ -413,15 +414,19 @@
                 fetch('zipcodes.json')
                     .then(response => response.json())
                     .then(data => {
-                        const zipcodeData = data.find(item => item.zip === zip);
-                        if (zipcodeData) {
-                            document.getElementById('city').value = zipcodeData.city;
-                            document.getElementById('state').value = zipcodeData.state;
-                            document.getElementById('zip').setCustomValidity('');
+                        if (Array.isArray(data["zipcodes"])) {
+                            const zipcodeData = data["zipcodes"].find(item => item.zip === zip);
+                            if (zipcodeData) {
+                                document.getElementById('city').value = zipcodeData.city;
+                                document.getElementById('state').value = zipcodeData.state;
+                                document.getElementById('zip').setCustomValidity('');
+                            } else {
+                                document.getElementById('city').value = '';
+                                document.getElementById('state').value = '';
+                                document.getElementById('zip').setCustomValidity('Invalid zip code');
+                            }
                         } else {
-                            document.getElementById('city').value = '';
-                            document.getElementById('state').value = '';
-                            document.getElementById('zip').setCustomValidity('Invalid zip code');
+                            console.error('Error: Expected an array of zip codes');
                         }
                     })
                     .catch(error => console.error('Error fetching the zip codes:', error));
@@ -431,25 +436,5 @@
 </body>
 
 </html>
-<script>
-    document.getElementById('zip').addEventListener('blur', function() {
-        const zip = this.value;
-        if (zip) {
-            fetch('zipcodes.json')
-                .then(response => response.json())
-                .then(data => {
-                    const zipcodeData = data.find(item => item.zip === zip);
-                    if (zipcodeData) {
-                        document.getElementById('city').value = zipcodeData.city;
-                        document.getElementById('state').value = zipcodeData.state;
-                        document.getElementById('zip').setCustomValidity('');
-                    } else {
-                        document.getElementById('city').value = '';
-                        document.getElementById('state').value = '';
-                        document.getElementById('zip').setCustomValidity('Invalid zip code');
-                    }
-                })
-                .catch(error => console.error('Error fetching the zip codes:', error));
-        }
-    });
-</script>
+
+   

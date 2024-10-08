@@ -1,32 +1,23 @@
 
-Part 1: Static Website Hosting on Amazon S3
+# Assignment:2
+
+# Static Website Hosting on Amazon S3
 
 End point URL : 
-http://swe642hwone.s3-website-us-east-1.amazonaws.com
+http://swe642hwtwoo.s3-website-us-east-1.amazonaws.com
 
-Homepage URL, CS Department, Survey Form (S3 Hosted):
+# Homepage URL, CS Department, Survey Form (S3 Hosted):
 
-http://swe642hwone.s3-website-us-east-1.amazonaws.com/
+CS dept survery form link: 
+https://swe642hwtwoo.s3.amazonaws.com/csdeptsurvey.html
 
-http://swe642hwone.s3-website-us-east-1.amazonaws.com/csdept.html
-
-http://swe642hwone.s3-website-us-east-1.amazonaws.com/csdept.html
-
-Part 2: Hosting on Amazon EC2 - CS Department, Survey Form
-All the URL's (EC2 Hosted):
-
-http://44.203.148.231/index.html
-
-http://44.203.148.231/csdept.html
-
-http://44.203.148.231/csdeptsurvey.html
 
 ### Instructions to Access the Application
 Visit the homepage by clicking the S3 URL provided above.
 To access the survey form, click on the link provided on the homepage, which directs to the survey form hosted on an EC2 instance.
 You can also directly visit the survey form by using the EC2 URL provided.
 
-### Part 1
+### S3 hosting
 Step-by-Step Procedure: Hosting a Static Website on Amazon S3 
 Log in to AWS Console:
 
@@ -50,7 +41,7 @@ In the Properties tab of your S3 bucket, scroll down to Static website hosting.
 Enable static website hosting.
 Set index.html as the Index document.
 Set a custom error page (e.g., error.html) if desired.
-Note the S3 Endpoint URL (http://swe642hwone.s3-website-us-east-1.amazonaws.com), ).
+Note the S3 Endpoint URL (http://swe642hwone.s3-website-us-east-1.amazonaws.com),.
 Set Permissions:
 
 Go to the Permissions tab of your S3 bucket.
@@ -73,40 +64,3 @@ Test Your Website:
 
 Access your static website via the S3 Endpoint URL you noted in step 4.
 
-### Part 2: 
-
-Step-by-Step Procedure: Hosting a Survey Form on Amazon EC2 
-Launch an EC2 Instance:
-
-In the AWS Management Console, navigate to EC2 under the compute section.
-Click Launch Instance.
-Choose the Amazon Linux 2 AMI (or Ubuntu) as the base operating system.
-Select the t2.micro instance type (eligible for free tier).
-Configure the instance settings, and in the Security Group section, allow HTTP (port 80) and SSH (port 22).
-Connect to EC2 Instance:
-
-Once the instance is running, connect to it using SSH. Open your terminal and run:
-bash
-Copy code
-ssh -i /path/to/your-key.pem ec2-user@<public-ip>
-Replace <public-ip> with the public IP address of your instance.
-Install Web Server (Apache):
-
-After connecting to the instance, install Apache web server:
-```
-sudo yum update -y
-sudo yum install httpd -y
-```
-Start the Apache service:
-```
-sudo systemctl start httpd
-sudo systemctl enable httpd
-```
-Upload the CS Department page and Survey Form Files:
-These 2 commands would give the permission and upload the files to the server
-
-```
-chmod 400 assign642one.pem 
-scp -i assign642one.pem * ubuntu@44.203.148.231:/var/www/html
-```
-# sixfour2.2
